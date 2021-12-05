@@ -1,9 +1,11 @@
 package ro.lemotion.data;
 
+import ro.lemotion.data.model.LoggedInUser;
+
 /**
- * A generic class that holds a result success w/ data or an error exception.
+ * A class that holds a result success w/ data or an error exception.
  */
-public class Result<T> {
+public class Result {
     // hide the private constructor to limit subclass types (Success, Error)
     private Result() {
     }
@@ -21,21 +23,27 @@ public class Result<T> {
     }
 
     // Success sub-class
-    public final static class Success<T> extends Result {
-        private T data;
+    public static final class Success extends Result {
+        private final LoggedInUser data;
 
-        public Success(T data) {
+        public Success(LoggedInUser data) {
             this.data = data;
         }
 
-        public T getData() {
+        public LoggedInUser getData() {
             return this.data;
         }
     }
 
+    public static final class Failure extends Result {
+        public String getMessage() {
+            return "Invalid credentials";
+        }
+    }
+
     // Error sub-class
-    public final static class Error extends Result {
-        private Exception error;
+    public static final class Error extends Result {
+        private final Exception error;
 
         public Error(Exception error) {
             this.error = error;
