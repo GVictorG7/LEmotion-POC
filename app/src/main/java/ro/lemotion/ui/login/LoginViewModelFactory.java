@@ -1,9 +1,8 @@
 package ro.lemotion.ui.login;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.annotation.NonNull;
-
 import ro.lemotion.data.LoginDataSource;
 import ro.lemotion.data.LoginRepository;
 

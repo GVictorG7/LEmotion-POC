@@ -13,10 +13,6 @@ public class LoggedInUser {
         this.displayName = displayName;
     }
 
-    public String getUserId() {
-        return userId;
-    }
-
     public String getDisplayName() {
         return displayName;
     }

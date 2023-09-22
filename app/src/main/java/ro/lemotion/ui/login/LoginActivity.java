@@ -1,6 +1,7 @@
 package ro.lemotion.ui.login;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -16,17 +17,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import ro.lemotion.R;
 import ro.lemotion.databinding.ActivityLoginBinding;
+import ro.lemotion.ui.register.RegisterActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
     private LoginViewModel loginViewModel;
-    private ActivityLoginBinding binding;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityLoginBinding.inflate(getLayoutInflater());
+        ActivityLoginBinding binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         loginViewModel = new ViewModelProvider(this, new LoginViewModelFactory())
@@ -105,8 +106,10 @@ public class LoginActivity extends AppCompatActivity {
                     passwordEditText.getText().toString());
         });
 
+        registerButton.setEnabled(true);
         registerButton.setOnClickListener(view -> {
-            
+            Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+            startActivity(intent);
         });
     }
 

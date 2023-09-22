@@ -5,7 +5,6 @@ package ro.lemotion.ui.login;
  */
 class LoggedInUserView {
     private final String displayName;
-    //... other data fields that may be accessible to the UI
 
     LoggedInUserView(String displayName) {
         this.displayName = displayName;

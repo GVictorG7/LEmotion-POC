@@ -1,15 +1,16 @@
 package ro.lemotion.data;
 
+import androidx.annotation.NonNull;
 import ro.lemotion.data.model.LoggedInUser;
 
 /**
  * A class that holds a result success w/ data or an error exception.
  */
 public class Result {
-    // hide the private constructor to limit subclass types (Success, Error)
     private Result() {
     }
 
+    @NonNull
     @Override
     public String toString() {
         if (this instanceof Result.Success) {
@@ -17,12 +18,11 @@ public class Result {
             return "Success[data=" + success.getData().toString() + "]";
         } else if (this instanceof Result.Error) {
             Result.Error error = (Result.Error) this;
-            return "Error[exception=" + error.getError().toString() + "]";
+            return "Error[exception=" + error.getException().toString() + "]";
         }
         return "";
     }
 
-    // Success sub-class
     public static final class Success extends Result {
         private final LoggedInUser data;
 
@@ -43,14 +43,14 @@ public class Result {
 
     // Error sub-class
     public static final class Error extends Result {
-        private final Exception error;
+        private final Exception exception;
 
         public Error(Exception error) {
-            this.error = error;
+            this.exception = error;
         }
 
-        public Exception getError() {
-            return this.error;
+        public Exception getException() {
+            return this.exception;
         }
     }
 }
